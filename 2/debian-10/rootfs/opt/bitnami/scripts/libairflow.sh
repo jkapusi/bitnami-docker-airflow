@@ -261,8 +261,8 @@ airflow_configure_webserver_authentication() {
 
     if is_boolean_yes "$AIRFLOW_LDAP_ENABLE"; then
         info "Enabling LDAP authentication"
-        replace_in_file "$AIRFLOW_WEBSERVER_CONF_FILE" "# from flask_appbuilder.security.manager import AUTH_LDAP" "from flask_appbuilder.security.manager import AUTH_LDAP"
-        replace_in_file "$AIRFLOW_WEBSERVER_CONF_FILE" "from flask_appbuilder.security.manager import AUTH_DB" "# from flask_appbuilder.security.manager import AUTH_DB"
+        replace_in_file "$AIRFLOW_WEBSERVER_CONF_FILE" "# from airflow.www.fab_security.manager import AUTH_LDAP" "from airflow.www.fab_security.manager import AUTH_LDAP"
+        replace_in_file "$AIRFLOW_WEBSERVER_CONF_FILE" "from airflow.www.fab_security.manager import AUTH_DB" "# from airflow.www.fab_security.manager import AUTH_DB"
 
         # webserver config
         airflow_webserver_conf_set "AUTH_TYPE" "AUTH_LDAP"
